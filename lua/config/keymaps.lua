@@ -28,24 +28,24 @@ vim.keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current bu
 
 -- Run python code in NeoVim
 vim.api.nvim_create_autocmd({ "FileType" }, {
-	pattern = { "python" },
-	callback = function()
-		vim.keymap.set(
-			"n",
-			"<F9>",
-			":w<CR>:exec '!python -u' shellescape(@%, 1)<CR>",
-			{ noremap = true, silent = true, buffer = true }
-		)
-	end,
+  pattern = { "python" },
+  callback = function()
+    vim.keymap.set(
+      "n",
+      "<F9>",
+      ":w<CR>:exec '!python -u' shellescape(@%, 1)<CR>",
+      { noremap = true, silent = true, buffer = true }
+    )
+  end,
 })
 vim.api.nvim_create_autocmd({ "FileType" }, {
-	pattern = { "python" },
-	callback = function()
-		vim.keymap.set(
-			"i",
-			"<F9>",
-			"<esc>:w<CR>:exec '!python -u' shellescape(@%, 1)<CR>",
-			{ noremap = true, silent = true, buffer = true }
-		)
-	end,
+  pattern = { "python" },
+  callback = function()
+    vim.keymap.set(
+      "i",
+      "<F9>",
+      "<esc>:w<CR>:exec '!python -u' shellescape(@%, 1)<CR>",
+      { noremap = true, silent = true, buffer = true }
+    )
+  end,
 })
