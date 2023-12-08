@@ -67,9 +67,8 @@ return {
 				end,
 			},
 			sources = {
-				{ name = "omni" },
-				{ name = "nvim_lsp" },
 				{ name = "path" },
+				{ name = "nvim_lsp" },
 				{ name = "buffer" },
 				{ name = "snippy" },
 			},

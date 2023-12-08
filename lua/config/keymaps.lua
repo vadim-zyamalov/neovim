@@ -4,7 +4,7 @@ vim.g.mapleader = " "
 vim.keymap.set("n", "<esc><esc>", ':nohlsearch<cr>:let @/=""<cr>', { noremap = true, silent = true })
 
 -- CD to the folder of the file
-vim.keymap.set("n", "<leader>cd", ":cd %:p:h<cr>", {noremap = true, silent = true })
+vim.keymap.set("n", "<leader>cd", ":cd %:p:h<cr>", { noremap = true, silent = true })
 
 -- Copy-Paste as usual
 vim.keymap.set("v", "<C-c>", '"+y', { noremap = true, silent = true })
@@ -27,22 +27,25 @@ vim.keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab"
 vim.keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) --  move current buffer to new tab
 
 -- Run python code in NeoVim
-vim.api.nvim_create_autocmd(
-	{ "FileType" },
-	{
-		pattern = { "python" },
-		callback = function()
-			vim.keymap.set("n", "<F9>", ":w<CR>:exec '!python -u' shellescape(@%, 1)<CR>", { noremap = true, silent = true, buffer = true })
-		end
-	}
-)
-vim.api.nvim_create_autocmd(
-	{ "FileType" },
-	{
-		pattern = { "python" },
-		callback = function()
-			vim.keymap.set("i", "<F9>", "<esc>:w<CR>:exec '!python -u' shellescape(@%, 1)<CR>", { noremap = true, silent = true, buffer = true })
-		end
-	}
-)
-
+vim.api.nvim_create_autocmd({ "FileType" }, {
+	pattern = { "python" },
+	callback = function()
+		vim.keymap.set(
+			"n",
+			"<F9>",
+			":w<CR>:exec '!python -u' shellescape(@%, 1)<CR>",
+			{ noremap = true, silent = true, buffer = true }
+		)
+	end,
+})
+vim.api.nvim_create_autocmd({ "FileType" }, {
+	pattern = { "python" },
+	callback = function()
+		vim.keymap.set(
+			"i",
+			"<F9>",
+			"<esc>:w<CR>:exec '!python -u' shellescape(@%, 1)<CR>",
+			{ noremap = true, silent = true, buffer = true }
+		)
+	end,
+})
