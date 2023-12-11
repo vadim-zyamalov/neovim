@@ -70,9 +70,9 @@ return {
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-cmdline",
       "hrsh7th/cmp-omni",
+      "dcampos/nvim-snippy",
       "dcampos/cmp-snippy",
       "onsails/lspkind.nvim",
-      "dcampos/nvim-snippy",
     },
     config = function()
       local has_words_before = function()
@@ -84,6 +84,8 @@ return {
       -- nvim-cmp
       local lspkind = require("lspkind")
       local cmp = require("cmp")
+      local snippy = require("snippy")
+
       cmp.setup {
         completion = {
           autocomplete = false,
@@ -95,7 +97,7 @@ return {
         },
         snippet = {
           expand = function(args)
-            require("snippy").expand_snippet(args.body)
+            snippy.expand_snippet(args.body)
           end,
         },
         mapping = {
@@ -114,6 +116,8 @@ return {
           ["<Tab>"] = function(fallback)
             if cmp.visible() then
               cmp.select_next_item()
+            elseif snippy.can_expand_or_advance() then
+              snippy.expand_or_advance()
             elseif has_words_before() then
               cmp.complete()
             else
@@ -123,8 +127,8 @@ return {
           ["<S-Tab>"] = function(fallback)
             if cmp.visible() then
               cmp.select_prev_item()
-            elseif has_words_before() then
-              cmp.complete()
+            elseif snippy.can_jump(-1) then
+              snippy.previous()
             else
               fallback()
             end
@@ -139,17 +143,7 @@ return {
       }
 
       -- Snippy
-      require("snippy").setup {
-        mappings = {
-          is = {
-            ["<Tab>"] = "expand_or_advance",
-            ["<S-Tab>"] = "previous",
-          },
-          nx = {
-            ["<leader>x"] = "cut_text",
-          },
-        },
-      }
+      snippy.setup {}
     end,
   },
 
