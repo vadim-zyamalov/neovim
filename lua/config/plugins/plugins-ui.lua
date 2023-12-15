@@ -1,4 +1,5 @@
 return {
+  -- Цветовая схема Catppuccin
   {
     "catppuccin/nvim",
     priority = 1000,
@@ -18,6 +19,8 @@ return {
       vim.cmd.colorscheme("catppuccin-mocha")
     end,
   },
+
+  -- Информационная строка
   {
     "nvim-lualine/lualine.nvim",
     config = function()
@@ -41,6 +44,8 @@ return {
       }
     end,
   },
+
+  -- Строка вкладок с буферами
   {
     "echasnovski/mini.tabline",
     version = false,
@@ -48,10 +53,14 @@ return {
       require("mini.tabline").setup()
     end,
   },
+
+  -- Вспплывающие окна, заменяющие ввод текста в командной строке
   {
     "stevearc/dressing.nvim",
     event = "VeryLazy",
   },
+
+  -- Подсказки сочетаний клавиш
   {
     "folke/which-key.nvim",
     event = "VeryLazy",
@@ -61,6 +70,8 @@ return {
     end,
     config = true,
   },
+
+  -- Раскрашивание цветов в тексте
   {
     "rrethy/vim-hexokinase",
     run = "make hexokinase",
@@ -82,6 +93,7 @@ return {
     end,
   },
 
+  -- Стартовый экран
   {
     "echasnovski/mini.starter",
     version = false,

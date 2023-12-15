@@ -8,7 +8,8 @@ return {
       pkg.setup()
     end,
   },
-  -- Комменитрование кусков текста
+
+  -- Комментирование кусков текста
   {
     "numToStr/Comment.nvim",
     event = { "BufReadPre", "BufNewFile" },
