@@ -3,6 +3,7 @@ return {
   {
     "echasnovski/mini.align",
     version = false,
+    event = { "BufReadPre", "BufNewFile" },
     config = function()
       local pkg = require("mini.align")
       pkg.setup()
@@ -10,18 +11,27 @@ return {
   },
 
   -- Комментирование кусков текста
+  -- {
+  --   "numToStr/Comment.nvim",
+  --   event = { "BufReadPre", "BufNewFile" },
+  --   dependencies = {
+  --     "JoosepAlviste/nvim-ts-context-commentstring",
+  --   },
+  --   config = function()
+  --     local ts_context_commentstring = require("ts_context_commentstring.integrations.comment_nvim")
+  --
+  --     require("Comment").setup {
+  --       pre_hook = ts_context_commentstring.create_pre_hook(),
+  --     }
+  --   end,
+  -- },
   {
-    "numToStr/Comment.nvim",
+    "echasnovski/mini.comment",
+    version = false,
     event = { "BufReadPre", "BufNewFile" },
-    dependencies = {
-      "JoosepAlviste/nvim-ts-context-commentstring",
-    },
     config = function()
-      local ts_context_commentstring = require("ts_context_commentstring.integrations.comment_nvim")
-
-      require("Comment").setup {
-        pre_hook = ts_context_commentstring.create_pre_hook(),
-      }
+      local pkg = require("mini.comment")
+      pkg.setup()
     end,
   },
 
@@ -44,19 +54,37 @@ return {
   },
 
   -- Расстановка и изменение окружений (скобок, тегов...)
+  -- {
+  --   "kylechui/nvim-surround",
+  --   event = { "BufReadPre", "BufNewFile" },
+  --   version = "*",
+  --   config = true,
+  -- },
   {
-    "kylechui/nvim-surround",
+    "echasnovski/mini.surround",
+    version = false,
     event = { "BufReadPre", "BufNewFile" },
-    version = "*",
-    config = true,
+    config = function()
+      local pkg = require("mini.surround")
+      pkg.setup()
+    end,
   },
 
   -- Расстановка парных скобок
+  -- {
+  --   "windwp/nvim-autopairs",
+  --   event = { "InsertEnter" },
+  --   opts = {
+  --     map_cr = true,
+  --   },
+  -- },
   {
-    "windwp/nvim-autopairs",
+    "echasnovski/mini.pairs",
+    version = false,
     event = { "InsertEnter" },
-    opts = {
-      map_cr = true,
-    },
+    config = function()
+      local pkg = require("mini.pairs")
+      pkg.setup()
+    end,
   },
 }

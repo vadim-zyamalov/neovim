@@ -1,11 +1,19 @@
 return {
   -- Перемещение по файлу
+  -- {
+  --   "unblevable/quick-scope",
+  --   event = { "BufReadPre", "BufNewFile" },
+  --   init = function()
+  --     vim.g.qs_highlight_on_keys = { "f", "F", "t", "T" }
+  --     vim.g.qs_lazy_highlight = 1
+  --   end,
+  -- },
   {
-    "unblevable/quick-scope",
-    event = { "BufReadPre", "BufNewFile" },
-    init = function()
-      vim.g.qs_highlight_on_keys = { "f", "F", "t", "T" }
-      vim.g.qs_lazy_highlight = 1
+    "echasnovski/mini.jump",
+    version = false,
+    config = function()
+      local pkg = require("mini.jump")
+      pkg.setup()
     end,
   },
 
@@ -14,7 +22,8 @@ return {
     "echasnovski/mini.bracketed",
     version = false,
     config = function()
-      require("mini.bracketed").setup()
+      local pkg = require("mini.bracketed")
+      pkg.setup()
     end,
   },
 
