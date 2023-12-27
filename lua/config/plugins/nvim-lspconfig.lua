@@ -2,15 +2,14 @@ return {
   -- nvim-lspconfig - встроенный набор настроек для работы LSP с разными языками.
   {
     "neovim/nvim-lspconfig",
-    event = { "BufReadPre", "BufNewFile" },
-    dependencies = {
-      "hrsh7th/cmp-nvim-lsp",
-    },
+    -- dependencies = {
+    --   "hrsh7th/cmp-nvim-lsp",
+    -- },
     config = function()
       local servers = { "pyright", "lua_ls", "texlab" }
 
       local nvim_lsp = require("lspconfig")
-      local capabilities = require("cmp_nvim_lsp").default_capabilities()
+      -- local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
       vim.api.nvim_create_autocmd({ "CursorHold" }, {
         buffer = 0,
@@ -51,7 +50,7 @@ return {
         end
         nvim_lsp[lsp].setup {
           on_attach = my_custom_on_attach,
-          capabilities = capabilities,
+          -- capabilities = capabilities,
           settings = settings,
         }
       end
