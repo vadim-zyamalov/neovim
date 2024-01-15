@@ -81,7 +81,7 @@ return {
         },
         { name = "nvim_lsp" },
         { name = "buffer" },
-        { name = "snippy" },
+        { name = "luasnip" },
       },
     }
   end,
