@@ -1,7 +1,7 @@
 return {
   "echasnovski/mini.completion",
   version = false,
-  event = "InsertEnter",
+  -- event = "InsertEnter",
   config = function()
     local pkg = require("mini.completion")
     pkg.setup {

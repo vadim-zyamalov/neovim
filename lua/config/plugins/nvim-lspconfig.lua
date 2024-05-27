@@ -2,14 +2,10 @@ return {
   -- nvim-lspconfig - встроенный набор настроек для работы LSP с разными языками.
   {
     "neovim/nvim-lspconfig",
-    dependencies = {
-      "hrsh7th/cmp-nvim-lsp",
-    },
     config = function()
       local servers = { "pyright", "lua_ls", "texlab" }
 
       local nvim_lsp = require("lspconfig")
-      local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
       vim.api.nvim_create_autocmd({ "CursorHold" }, {
         buffer = 0,
@@ -50,7 +46,6 @@ return {
         end
         nvim_lsp[lsp].setup {
           on_attach = my_custom_on_attach,
-          capabilities = capabilities,
           settings = settings,
         }
       end
@@ -68,4 +63,5 @@ return {
       require("mason-lspconfig").setup()
     end,
   },
+
 }
