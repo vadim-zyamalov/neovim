@@ -7,7 +7,6 @@ return {
     "hrsh7th/cmp-cmdline",
     "hrsh7th/cmp-omni",
     "L3MON4D3/LuaSnip",
-    "saadparwaiz1/cmp_luasnip",
     "onsails/lspkind.nvim",
   },
   config = function()
@@ -20,7 +19,6 @@ return {
     -- nvim-cmp
     local lspkind = require("lspkind")
     local cmp = require("cmp")
-    local luasnip = require("luasnip")
 
     cmp.setup {
       completion = {
@@ -33,7 +31,7 @@ return {
       },
       snippet = {
         expand = function(args)
-          luasnip.lsp_expand(args.body)
+          vim.snippet.expand(args.body)
         end,
       },
       mapping = {
@@ -52,8 +50,6 @@ return {
         ["<Tab>"] = function(fallback)
           if cmp.visible() then
             cmp.select_next_item()
-          elseif luasnip.expand_or_jumpable() then
-            luasnip.expand_or_jump()
           elseif has_words_before() then
             cmp.complete()
           else
@@ -63,8 +59,6 @@ return {
         ["<S-Tab>"] = function(fallback)
           if cmp.visible() then
             cmp.select_prev_item()
-          elseif luasnip.jumpable(-1) then
-            luasnip.jump(-1)
           else
             fallback()
           end
@@ -75,13 +69,12 @@ return {
           name = "path",
           option = {
             get_cwd = function(_)
-              return vim.loop.cwd()
+              return (vim.uv or vim.loop).cwd()
             end,
           },
         },
         { name = "nvim_lsp" },
         { name = "buffer" },
-        { name = "luasnip" },
       },
     }
   end,

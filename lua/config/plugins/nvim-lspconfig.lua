@@ -2,8 +2,12 @@ return {
   -- nvim-lspconfig - встроенный набор настроек для работы LSP с разными языками.
   {
     "neovim/nvim-lspconfig",
+    dependencies = {
+      "hrsh7th/cmp-nvim-lsp",
+    },
     config = function()
       local servers = { "pyright", "lua_ls", "texlab" }
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
       local nvim_lsp = require("lspconfig")
 
@@ -20,7 +24,7 @@ return {
         command = "lua vim.lsp.buf.clear_references()",
       })
 
-      local my_custom_on_attach = function(_)
+      local my_custom_on_attach = function()
         vim.api.nvim_buf_set_keymap(0, "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", { noremap = true })
         vim.api.nvim_buf_set_keymap(0, "n", "c-]", "<cmd>lua vim.lsp.buf.definition()<CR>", { noremap = true })
         vim.api.nvim_buf_set_keymap(0, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", { noremap = true })
@@ -46,6 +50,7 @@ return {
         end
         nvim_lsp[lsp].setup {
           on_attach = my_custom_on_attach,
+          capabilities = capabilities,
           settings = settings,
         }
       end
@@ -63,5 +68,4 @@ return {
       require("mason-lspconfig").setup()
     end,
   },
-
 }
